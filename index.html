@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Navpratap Singh Yoga</title>
+<meta name="description" content="Navpratap Singh, yoga therapy student and certified yoga instructor. Practising since 2019. First three classes free. Book on WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+  /* Layout: one calm page. Breath-ring hero, then about, class list, weekly rhythm, contact. */
+  :root {
+    --bg: #F1F4F1;
+    --surface: #E4ECE7;
+    --fg: #15221E;
+    --muted: #4E5F59;
+    --line: #C7D4CC;
+    --accent: #1D5A4E;
+    --accent-ink: #F1F4F1;
+    --soft: #D3E5DB;
+    --display: "Instrument Serif", "Times New Roman", serif;
+    --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0E1916; --surface: #162520; --fg: #E7F0EC; --muted: #9DB3AA;
+      --line: #27403A; --accent: #7ED0BB; --accent-ink: #0E1916; --soft: #1B3029;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0E1916; --surface: #162520; --fg: #E7F0EC; --muted: #9DB3AA;
+    --line: #27403A; --accent: #7ED0BB; --accent-ink: #0E1916; --soft: #1B3029;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+    body {
+    background: var(--bg); color: var(--fg);
+    font: 400 16px/1.6 var(--body);
+    padding-inline: 20px;
+  }
+  .wrap { max-width: 1040px; margin-inline: auto; }
+  .hero > *, .about > *, .contact > *, .sec-head > *, .classes li > * { min-width: 0; }
+  .lede, .about p, .sec-head p, .contact p { overflow-wrap: anywhere; }
+  a { color: inherit; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.05; text-wrap: balance; margin: 0; }
+  p { margin: 0; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  /* top bar */
+  .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); margin-inline: -20px; padding-inline: 20px; }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
+  .brand { font: 400 1.5rem/1 var(--display); text-decoration: none; }
+  .top nav { display: flex; align-items: center; gap: 22px; font-size: .92rem; }
+  .top nav a { text-decoration: none; color: var(--muted); }
+  .top nav a:hover { color: var(--fg); }
+  .top nav .pill { color: var(--accent-ink); }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 22px; border-radius: 999px; font: 500 .95rem/1 var(--body); text-decoration: none; border: 1px solid transparent; cursor: pointer; }
+  .btn-primary, .pill { background: var(--accent); color: var(--accent-ink); }
+  .pill { padding: 9px 16px; border-radius: 999px; }
+  .btn-ghost { border-color: var(--line); color: var(--fg); background: transparent; }
+  .btn-ghost:hover { border-color: var(--accent); }
+
+  /* hero */
+  .hero { display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; padding-block: 72px 80px; }
+  .eyebrow { font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+  .hero h1 { font-size: clamp(2.8rem, 8.2vw, 5.4rem); margin-block: 16px 22px; }
+  .hero h1 em { font-style: italic; color: var(--accent); display: inline-block; animation: breatheText 10s ease-in-out infinite; transform-origin: left center; }
+  @keyframes breatheText { 0%, 100% { transform: scale(.94); opacity: .75; } 40% { transform: scale(1); opacity: 1; } }
+  .lede { font-size: 1.12rem; color: var(--muted); max-width: 46ch; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+
+  .portrait { width: min(100%, 420px); aspect-ratio: 4 / 5; margin-inline: auto; border-radius: 24px; overflow: hidden; background: var(--surface); }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 52% 30%; display: block; }
+  .gallery { display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 150px; gap: 12px; }
+  .gallery figure { margin: 0; border-radius: 16px; overflow: hidden; background: var(--surface); }
+  .gallery img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .gallery .g1 { grid-column: span 3; grid-row: span 2; }
+  .gallery .g2 { grid-column: span 3; grid-row: span 2; }
+  .gallery .g3 { grid-column: span 2; grid-row: span 2; }
+  .gallery .g4 { grid-column: span 2; grid-row: span 2; }
+  .gallery .g5 { grid-column: span 2; grid-row: span 2; }
+  .breath { position: relative; width: min(100%, 340px); aspect-ratio: 1; margin-inline: auto; display: grid; place-items: center; }
+  .ring { position: absolute; inset: 0; border-radius: 50%; border: 1px solid var(--accent); opacity: .45; animation: breathe 10s ease-in-out infinite; }
+  .ring:nth-child(2) { inset: 11%; animation-delay: .35s; opacity: .6; }
+  .ring:nth-child(3) { inset: 22%; animation-delay: .7s; background: var(--soft); border-color: transparent; opacity: 1; }
+  .breath-label { position: relative; text-align: center; font: 400 1.35rem/1.25 var(--display); }
+  .breath-label small { display: block; font: 500 .72rem/1.4 var(--body); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+  @keyframes breathe { 0%, 100% { transform: scale(.88); } 40% { transform: scale(1); } }
+  @media (prefers-reduced-motion: reduce) { .ring, .hero h1 em { animation: none; } }
+
+  /* sections */
+  section { padding-block: 64px; border-top: 1px solid var(--line); }
+  .sec-head { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; margin-bottom: 36px; }
+  .sec-head h2 { font-size: clamp(2rem, 5vw, 3rem); }
+  .sec-head p { color: var(--muted); align-self: end; max-width: 52ch; }
+
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .about p + p { margin-top: 14px; }
+  .about p { color: var(--muted); }
+  .trial { background: var(--soft); border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; align-self: start; }
+  .trial h3 { font-size: clamp(1.8rem, 4vw, 2.3rem); }
+  .trial p:not(.eyebrow) { color: var(--muted); }
+  .terms { margin: 0; display: grid; gap: 0; }
+  .terms div { display: grid; grid-template-columns: 9.5rem 1fr; gap: 16px; padding-block: 14px; border-top: 1px solid var(--line); }
+  .terms div:last-child { border-bottom: 1px solid var(--line); }
+  .terms dt { font: 400 1.35rem/1.2 var(--display); }
+  .terms dt span { display: block; font: 500 .72rem/1.4 var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .terms dd { margin: 0; color: var(--muted); align-self: center; }
+
+  .classes { list-style: none; margin: 0; padding: 0; }
+  .classes li { display: grid; grid-template-columns: 1.4fr 1fr 5.5rem 1fr; gap: 16px; align-items: baseline; padding-block: 20px; border-top: 1px solid var(--line); }
+  .classes li:last-child { border-bottom: 1px solid var(--line); }
+  .classes h3 { font-size: 1.7rem; }
+  .classes .meta { color: var(--muted); font-size: .95rem; }
+  .classes .dur { font-variant-numeric: tabular-nums; font-weight: 500; }
+  .tag { justify-self: start; font-size: .78rem; font-weight: 500; padding: 4px 11px; border-radius: 999px; background: var(--soft); color: var(--fg); }
+
+  .week { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .day { padding: 18px 16px; border-left: 1px solid var(--line); min-width: 0; }
+  .day:first-child { border-left: 0; }
+  .day h3 { font-size: 1.4rem; margin-bottom: 10px; }
+  .day p { font-size: .9rem; color: var(--muted); }
+  .day .t { display: block; color: var(--fg); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .day.rest { background: var(--surface); }
+  .note { margin-top: 14px; font-size: .88rem; color: var(--muted); }
+
+  .contact { background: var(--surface); border-radius: 20px; padding: 44px 36px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; align-items: center; border-top: 0; }
+  .contact-wrap { padding-block: 64px; border-top: 1px solid var(--line); }
+  .contact h2 { font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 14px; }
+  .contact p { color: var(--muted); max-width: 44ch; }
+  .handle { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+  .handle .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .handle .row .btn { padding: 10px 16px; }
+  .handle code { font: 500 1rem/1.2 var(--body); overflow-wrap: anywhere; user-select: all; padding: 10px 14px; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; }
+
+  footer { padding-block: 28px 40px; font-size: .85rem; color: var(--muted); border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+
+  @media (max-width: 820px) {
+    .hero, .about, .sec-head, .contact { grid-template-columns: 1fr; }
+    .hero { padding-block: 40px 56px; gap: 36px; }
+    .sec-head { gap: 12px; }
+    .classes li { grid-template-columns: 1fr auto; row-gap: 6px; }
+    .classes li .meta { grid-column: 1 / -1; }
+    .classes .tag { grid-column: 1; grid-row: 3; }
+    .classes .dur { grid-column: 2; grid-row: 1; }
+    .terms div { grid-template-columns: 1fr; gap: 2px; }
+    .contact { padding: 32px 22px; }
+    .top nav a:not(.pill) { display: none; }
+  }
+  @media (max-width: 560px) {
+    .gallery { grid-template-columns: 1fr 1fr; grid-auto-rows: 140px; }
+    .gallery .g1 { grid-column: span 2; grid-row: span 2; }
+    .gallery .g2, .gallery .g3, .gallery .g4, .gallery .g5 { grid-column: span 1; grid-row: span 2; }
+    .week { grid-template-columns: 1fr 1fr; }
+    .day { border-left: 0; border-top: 1px solid var(--line); }
+    .day:nth-child(odd) { border-right: 1px solid var(--line); }
+    .day:nth-child(-n+2) { border-top: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">Navpratap Singh</a>
+    <nav aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#practice">Practice</a>
+      <a href="#training">Training</a>
+      <a href="#contact" class="pill">Book a class</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top" class="wrap">
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Yoga &middot; Breath &middot; Strength</p>
+      <h1>Move slowly. <em>Breathe fully.</em></h1>
+      <p class="lede">Breath-led yoga from a trained yoga therapist and certified instructor. Practising since 2019, teaching beginners and regular practitioners with care for the body.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://wa.me/918619812279" target="_blank" rel="noopener">Book a free trial</a>
+        <a class="btn btn-ghost" href="#training">See training</a>
+      </div>
+    </div>
+    <div class="portrait"><img src="img/hero.jpg" alt="Navpratap Singh smiling in a seated yoga pose on a pink mat, with students practising behind him" width="1400" height="933" fetchpriority="high"></div>
+  </div>
+
+  <section id="about">
+    <div class="sec-head">
+      <h2>About Navpratap</h2>
+      <p>A practice built on breath first, shape second.</p>
+    </div>
+    <div class="about">
+      <div>
+        <p>I am Navpratap Singh, a yoga practitioner since 2019. I am studying BSc Yoga Therapy at S-VYASA University, Bengaluru, and have completed a 390-hour yoga instructor course at the Central University of Rajasthan.</p>
+        <p>I was an international coach at the first World Yogasana Championship in Ahmedabad, Gujarat. My teaching starts with the breath and adapts to your body, your level and your day. You do not need to be flexible to begin.</p>
+      </div>
+      <aside class="trial">
+        <p class="eyebrow">Free trial</p>
+        <h3>Your first three classes are free.</h3>
+        <p>Try a class with no payment and no pressure. Message me on WhatsApp to book your first one.</p>
+        <a class="btn btn-primary" href="https://wa.me/918619812279" target="_blank" rel="noopener">Book a free trial</a>
+      </aside>
+    </div>
+  </section>
+
+    <section id="practice">
+    <div class="sec-head">
+      <h2>Practice</h2>
+      <p>Moments from outdoor sessions, partner work and training.</p>
+    </div>
+    <div class="gallery">
+      <figure class="g1"><img loading="lazy" src="img/bend.jpg" alt="Navpratap and a partner in a wide-legged standing forward bend on pink mats" width="1400" height="933"></figure>
+      <figure class="g2"><img loading="lazy" src="img/look.jpg" alt="Navpratap in a seated pose turning to look over his shoulder" width="1400" height="933"></figure>
+      <figure class="g3"><img loading="lazy" src="img/acro.jpg" alt="Navpratap balancing in a straddle pose on the backs of two partners" width="933" height="1400"></figure>
+      <figure class="g4"><img loading="lazy" src="img/indoor1.jpg" alt="Two practitioners in an arm-balance pose indoors" width="1024" height="760"></figure>
+      <figure class="g5"><img loading="lazy" src="img/indoor2.jpg" alt="Two practitioners seated with hands overhead in a namaste pose" width="768" height="1024"></figure>
+    </div>
+  </section>
+
+  <section id="training">
+    <div class="sec-head">
+      <h2>Training</h2>
+      <p>Years of practice, formal study and competition coaching behind every class.</p>
+    </div>
+    <div class="week">
+      <div class="day"><h3>Since 2019</h3><p>Regular yoga practice and teaching.</p></div>
+      <div class="day"><h3>BSc Yoga Therapy</h3><p>S-VYASA University, Bengaluru.</p></div>
+      <div class="day"><h3>390-hour course</h3><p>Yoga instructor course, Central University of Rajasthan.</p></div>
+      <div class="day"><h3>International coach</h3><p>First World Yogasana Championship, Ahmedabad, Gujarat.</p></div>
+    </div>
+    <p class="note">Class timings are flexible. Message me and we will find a time that suits you.</p>
+  </section>
+
+  <div class="contact-wrap">
+    <div class="contact" id="contact">
+      <div>
+        <h2>Book a class.</h2>
+        <p>Your first three classes are free. Message me on WhatsApp or email with your goals and any injuries. Timings are flexible, and I will reply with a plan that fits you.</p>
+      </div>
+      <div class="handle">
+        <a class="btn btn-primary" href="https://wa.me/918619812279" target="_blank" rel="noopener">WhatsApp me</a>
+        <div class="row"><code id="phone">+91 86198 12279</code><button class="btn btn-ghost" data-copy="8619812279" data-target="phone" type="button">Copy</button></div>
+        <div class="row"><code id="mail">nav.yogaa@gmail.com</code><button class="btn btn-ghost" data-copy="nav.yogaa@gmail.com" data-target="mail" type="button">Copy</button></div>
+        <a class="btn btn-ghost" href="https://instagram.com/nav.yoga" target="_blank" rel="noopener">Instagram @nav.yoga</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>&copy; Navpratap Singh</span>
+    <span>Practise within your comfort. If you have an injury or health condition, check with your doctor first.</span>
+  </footer>
+</main>
+
+<script>
+  (function () {
+    document.querySelectorAll('[data-copy]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var el = document.getElementById(btn.getAttribute('data-target'));
+        function fallback() {
+          var r = document.createRange(); r.selectNodeContents(el);
+          var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+          btn.textContent = 'Selected';
+        }
+        try {
+          navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(function () {
+            btn.textContent = 'Copied';
+            setTimeout(function () { btn.textContent = 'Copy'; }, 1800);
+          }, fallback);
+        } catch (e) { fallback(); }
+      });
+    });
+  })();
+</script>
+</body>
+</html>
