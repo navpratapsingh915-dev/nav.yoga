@@ -9,7 +9,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
 <style>
-  /* Layout: one calm page. Breath-ring hero, then about, class list, weekly rhythm, contact. */
   :root {
     --bg: #F1F4F1;
     --surface: #E4ECE7;
@@ -36,20 +35,19 @@
   }
 
   * { box-sizing: border-box; }
-    body {
+  body {
     background: var(--bg); color: var(--fg);
     font: 400 16px/1.6 var(--body);
     padding-inline: 20px;
   }
   .wrap { max-width: 1040px; margin-inline: auto; }
-  .hero > *, .about > *, .contact > *, .sec-head > *, .classes li > * { min-width: 0; }
+  .hero > *, .about > *, .contact > *, .sec-head > * { min-width: 0; }
   .lede, .about p, .sec-head p, .contact p { overflow-wrap: anywhere; }
   a { color: inherit; }
   h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.05; text-wrap: balance; margin: 0; }
   p { margin: 0; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
-  /* top bar */
   .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); margin-inline: -20px; padding-inline: 20px; }
   .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
   .brand { font: 400 1.5rem/1 var(--display); text-decoration: none; }
@@ -64,7 +62,6 @@
   .btn-ghost { border-color: var(--line); color: var(--fg); background: transparent; }
   .btn-ghost:hover { border-color: var(--accent); }
 
-  /* hero */
   .hero { display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; padding-block: 72px 80px; }
   .eyebrow { font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
   .hero h1 { font-size: clamp(2.8rem, 8.2vw, 5.4rem); margin-block: 16px 22px; }
@@ -75,24 +72,8 @@
 
   .portrait { width: min(100%, 420px); aspect-ratio: 4 / 5; margin-inline: auto; border-radius: 24px; overflow: hidden; background: var(--surface); }
   .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 52% 30%; display: block; }
-  .gallery { display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 150px; gap: 12px; }
-  .gallery figure { margin: 0; border-radius: 16px; overflow: hidden; background: var(--surface); }
-  .gallery img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .gallery .g1 { grid-column: span 3; grid-row: span 2; }
-  .gallery .g2 { grid-column: span 3; grid-row: span 2; }
-  .gallery .g3 { grid-column: span 2; grid-row: span 2; }
-  .gallery .g4 { grid-column: span 2; grid-row: span 2; }
-  .gallery .g5 { grid-column: span 2; grid-row: span 2; }
-  .breath { position: relative; width: min(100%, 340px); aspect-ratio: 1; margin-inline: auto; display: grid; place-items: center; }
-  .ring { position: absolute; inset: 0; border-radius: 50%; border: 1px solid var(--accent); opacity: .45; animation: breathe 10s ease-in-out infinite; }
-  .ring:nth-child(2) { inset: 11%; animation-delay: .35s; opacity: .6; }
-  .ring:nth-child(3) { inset: 22%; animation-delay: .7s; background: var(--soft); border-color: transparent; opacity: 1; }
-  .breath-label { position: relative; text-align: center; font: 400 1.35rem/1.25 var(--display); }
-  .breath-label small { display: block; font: 500 .72rem/1.4 var(--body); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
-  @keyframes breathe { 0%, 100% { transform: scale(.88); } 40% { transform: scale(1); } }
-  @media (prefers-reduced-motion: reduce) { .ring, .hero h1 em { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .hero h1 em { animation: none; } }
 
-  /* sections */
   section { padding-block: 64px; border-top: 1px solid var(--line); }
   .sec-head { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; margin-bottom: 36px; }
   .sec-head h2 { font-size: clamp(2rem, 5vw, 3rem); }
@@ -104,28 +85,12 @@
   .trial { background: var(--soft); border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; align-self: start; }
   .trial h3 { font-size: clamp(1.8rem, 4vw, 2.3rem); }
   .trial p:not(.eyebrow) { color: var(--muted); }
-  .terms { margin: 0; display: grid; gap: 0; }
-  .terms div { display: grid; grid-template-columns: 9.5rem 1fr; gap: 16px; padding-block: 14px; border-top: 1px solid var(--line); }
-  .terms div:last-child { border-bottom: 1px solid var(--line); }
-  .terms dt { font: 400 1.35rem/1.2 var(--display); }
-  .terms dt span { display: block; font: 500 .72rem/1.4 var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-  .terms dd { margin: 0; color: var(--muted); align-self: center; }
-
-  .classes { list-style: none; margin: 0; padding: 0; }
-  .classes li { display: grid; grid-template-columns: 1.4fr 1fr 5.5rem 1fr; gap: 16px; align-items: baseline; padding-block: 20px; border-top: 1px solid var(--line); }
-  .classes li:last-child { border-bottom: 1px solid var(--line); }
-  .classes h3 { font-size: 1.7rem; }
-  .classes .meta { color: var(--muted); font-size: .95rem; }
-  .classes .dur { font-variant-numeric: tabular-nums; font-weight: 500; }
-  .tag { justify-self: start; font-size: .78rem; font-weight: 500; padding: 4px 11px; border-radius: 999px; background: var(--soft); color: var(--fg); }
 
   .week { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
   .day { padding: 18px 16px; border-left: 1px solid var(--line); min-width: 0; }
   .day:first-child { border-left: 0; }
   .day h3 { font-size: 1.4rem; margin-bottom: 10px; }
   .day p { font-size: .9rem; color: var(--muted); }
-  .day .t { display: block; color: var(--fg); font-weight: 500; font-variant-numeric: tabular-nums; }
-  .day.rest { background: var(--surface); }
   .note { margin-top: 14px; font-size: .88rem; color: var(--muted); }
 
   .contact { background: var(--surface); border-radius: 20px; padding: 44px 36px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; align-items: center; border-top: 0; }
@@ -143,22 +108,29 @@
     .hero, .about, .sec-head, .contact { grid-template-columns: 1fr; }
     .hero { padding-block: 40px 56px; gap: 36px; }
     .sec-head { gap: 12px; }
-    .classes li { grid-template-columns: 1fr auto; row-gap: 6px; }
-    .classes li .meta { grid-column: 1 / -1; }
-    .classes .tag { grid-column: 1; grid-row: 3; }
-    .classes .dur { grid-column: 2; grid-row: 1; }
-    .terms div { grid-template-columns: 1fr; gap: 2px; }
     .contact { padding: 32px 22px; }
     .top nav a:not(.pill) { display: none; }
   }
   @media (max-width: 560px) {
-    .gallery { grid-template-columns: 1fr 1fr; grid-auto-rows: 140px; }
-    .gallery .g1 { grid-column: span 2; grid-row: span 2; }
-    .gallery .g2, .gallery .g3, .gallery .g4, .gallery .g5 { grid-column: span 1; grid-row: span 2; }
     .week { grid-template-columns: 1fr 1fr; }
     .day { border-left: 0; border-top: 1px solid var(--line); }
     .day:nth-child(odd) { border-right: 1px solid var(--line); }
     .day:nth-child(-n+2) { border-top: 0; }
+  }
+
+  .shots { display: grid; gap: 44px; }
+  .shot { margin: 0; min-width: 0; }
+  .shot img { display: block; width: 100%; height: auto; border-radius: 20px; background: var(--surface); }
+  .shot figcaption { margin-top: 12px; font-size: .78rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+  .pair { display: grid; gap: 20px; align-items: start; }
+  .pair.p1 { grid-template-columns: .667fr 1.5fr; }
+  .pair.p2 { grid-template-columns: 1.347fr .75fr; }
+  .shot.wide img { max-height: 680px; object-fit: cover; }
+  @media (max-width: 640px) {
+    .shots { gap: 32px; }
+    .pair.p1, .pair.p2 { grid-template-columns: 1fr; gap: 32px; }
+    .pair .shot img { width: 100%; }
+    .shot.narrow { width: min(100%, 360px); margin-inline: auto; }
   }
 </style>
 </head>
@@ -166,7 +138,7 @@
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#top">Navpratap Singh</a>
+    <a class="brand" href="#top">nav.yoga</a>
     <nav aria-label="Main">
       <a href="#about">About</a>
       <a href="#practice">Practice</a>
@@ -187,7 +159,7 @@
         <a class="btn btn-ghost" href="#training">See training</a>
       </div>
     </div>
-    <div class="portrait"><img src="img/hero.jpg" alt="Navpratap Singh smiling in a seated yoga pose on a pink mat, with students practising behind him" width="1400" height="933" fetchpriority="high"></div>
+    <div class="portrait"><img src="hero.jpg" alt="Navpratap Singh smiling in a seated yoga pose on a pink mat, with students practising behind him" width="1400" height="933" fetchpriority="high"></div>
   </div>
 
   <section id="about">
@@ -209,17 +181,21 @@
     </div>
   </section>
 
-    <section id="practice">
+  <section id="practice">
     <div class="sec-head">
       <h2>Practice</h2>
       <p>Moments from outdoor sessions, partner work and training.</p>
     </div>
-    <div class="gallery">
-      <figure class="g1"><img loading="lazy" src="img/bend.jpg" alt="Navpratap and a partner in a wide-legged standing forward bend on pink mats" width="1400" height="933"></figure>
-      <figure class="g2"><img loading="lazy" src="img/look.jpg" alt="Navpratap in a seated pose turning to look over his shoulder" width="1400" height="933"></figure>
-      <figure class="g3"><img loading="lazy" src="img/acro.jpg" alt="Navpratap balancing in a straddle pose on the backs of two partners" width="933" height="1400"></figure>
-      <figure class="g4"><img loading="lazy" src="img/indoor1.jpg" alt="Two practitioners in an arm-balance pose indoors" width="1024" height="760"></figure>
-      <figure class="g5"><img loading="lazy" src="img/indoor2.jpg" alt="Two practitioners seated with hands overhead in a namaste pose" width="768" height="1024"></figure>
+    <div class="shots">
+      <figure class="shot wide"><img loading="lazy" src="bend.jpg" alt="Navpratap and a partner in a wide-legged standing forward bend on pink mats" width="1400" height="933"><figcaption>Partner practice</figcaption></figure>
+      <div class="pair p1">
+        <figure class="shot narrow"><img loading="lazy" src="acro.jpg" alt="Navpratap balancing in a straddle pose on the backs of two partners" width="933" height="1400"><figcaption>Balance and trust</figcaption></figure>
+        <figure class="shot"><img loading="lazy" src="look.jpg" alt="Navpratap in a seated pose turning to look over his shoulder" width="1400" height="933"><figcaption>Seated twist</figcaption></figure>
+      </div>
+      <div class="pair p2">
+        <figure class="shot"><img loading="lazy" src="indoor1.jpg" alt="Two practitioners in an arm-balance pose indoors" width="1024" height="760"><figcaption>Arm balance</figcaption></figure>
+        <figure class="shot narrow"><img loading="lazy" src="indoor2.jpg" alt="Two practitioners seated with hands overhead in a namaste pose" width="768" height="1024"><figcaption>Namaste</figcaption></figure>
+      </div>
     </div>
   </section>
 
